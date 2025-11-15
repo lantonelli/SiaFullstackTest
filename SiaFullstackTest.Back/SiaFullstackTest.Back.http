@@ -1,0 +1,44 @@
+@SiaFullstackTest.Back_HostAddress = http://localhost:5153
+
+### Obtener todos los productos
+GET {{SiaFullstackTest.Back_HostAddress}}/api/products/
+Accept: application/json
+
+###
+
+### Obtener producto por ID
+GET {{SiaFullstackTest.Back_HostAddress}}/api/products/{id}
+Accept: application/json
+
+###
+
+### Crear producto
+POST {{SiaFullstackTest.Back_HostAddress}}/api/products/
+Content-Type: application/json
+
+{
+  "name": "Nuevo Producto",
+  "description": "Esto es una descripción de un producto"
+  
+}
+
+###
+
+### Actualizar producto
+PUT {{SiaFullstackTest.Back_HostAddress}}/api/products/{id}
+Content-Type: application/json
+
+{
+  "id": {id},
+  "name": "Producto Actualizado",
+  "price": 120.0,
+  "categoryIds": [1]
+}
+
+###
+
+### Eliminar producto
+DELETE {{SiaFullstackTest.Back_HostAddress}}/api/products/{id}
+Accept: application/json
+
+###

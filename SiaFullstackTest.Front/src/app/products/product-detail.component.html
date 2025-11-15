@@ -1,0 +1,117 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div *ngIf="loading" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando producto...</span>
+        </div>
+      </div>
+
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+        {{ error }}
+        <button (click)="goBack()" class="btn btn-sm btn-secondary ms-3">Volver</button>
+      </div>
+
+      <div *ngIf="!loading && !error && product" class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h3 class="mb-0">Detalle del Producto</h3>
+          <div class="btn-group">
+            <button (click)="editProduct()" class="btn btn-primary btn-sm">
+              Editar
+            </button>
+            <button (click)="goBack()" class="btn btn-secondary btn-sm">
+              Volver
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="card bg-light">
+                <div class="card-body text-center">
+                  <img 
+                    *ngIf="product.image" 
+                    [src]="product.image" 
+                    [alt]="product.name"
+                    class="img-fluid rounded"
+                    style="max-height: 400px; object-fit: contain;">
+                  <div *ngIf="!product.image" class="p-5">
+                    <i class="bi bi-image" style="font-size: 4rem; color: #6c757d;"></i>
+                    <p class="text-muted mt-3">Sin imagen</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="mb-4">
+                <h2 class="mb-3">{{ product.name }}</h2>
+                <hr>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-4">
+                  <strong class="text-muted">ID:</strong>
+                </div>
+                <div class="col-8">
+                  <span class="badge bg-secondary">{{ product.productId }}</span>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-4">
+                  <strong class="text-muted">Nombre:</strong>
+                </div>
+                <div class="col-8">
+                  {{ product.name }}
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-4">
+                  <strong class="text-muted">Descripción:</strong>
+                </div>
+                <div class="col-8">
+                  {{ product.description }}
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-4">
+                  <strong class="text-muted">Imagen URL:</strong>
+                </div>
+                <div class="col-8">
+                  <small class="text-break">{{ product.image || 'N/A' }}</small>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-4">
+                  <strong class="text-muted">Categorías:</strong>
+                </div>
+                <div class="col-8">
+                  <ng-container *ngIf="product.categories?.length; else noCats">
+                    <span *ngFor="let cat of product.categories" class="badge bg-info text-dark me-2 mb-2">{{ cat.name }}</span>
+                  </ng-container>
+                  <ng-template #noCats>
+                    <span class="text-muted">Sin categorías asociadas</span>
+                  </ng-template>
+                </div>
+              </div>
+
+              <hr class="my-4">
+
+              <div class="d-flex gap-2">
+                <button (click)="editProduct()" class="btn btn-primary">
+                  Editar Producto
+                </button>
+                <button (click)="goBack()" class="btn btn-outline-secondary">
+                  Volver a la Lista
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="container mt-4">
+  <div *ngIf="loading" class="alert alert-info">Cargando...</div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  <div *ngIf="!loading && category">
+    <h2>Detalle Categoría</h2>
+    <p><strong>ID:</strong> {{ category.categoryId }}</p>
+    <p><strong>Nombre:</strong> {{ category.name }}</p>
+    <a class="btn btn-outline-primary me-2" [routerLink]="['/categorias/editar', category.categoryId]">Editar</a>
+    <a class="btn btn-secondary" [routerLink]="['/categorias']">Volver</a>
+  </div>
+</div>

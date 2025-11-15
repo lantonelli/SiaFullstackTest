@@ -1,0 +1,12 @@
+<div class="container mt-4">
+  <h2>Nueva Categoría</h2>
+  <form (ngSubmit)="save()" #f="ngForm" novalidate>
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input name="name" [(ngModel)]="name" required class="form-control" />
+    </div>
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+    <button class="btn btn-primary" [disabled]="saving">Guardar</button>
+    <a class="btn btn-secondary ms-2" [routerLink]="['/categorias']">Cancelar</a>
+  </form>
+</div>
