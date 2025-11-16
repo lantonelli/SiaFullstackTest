@@ -17,6 +17,7 @@ namespace SiaFullstackTest.Back.Data.Entities
         [MaxLength(500)]
         public required string Description { get; set; }
 
+        [MaxLength(500)]
         public string? Image { get; set; }
 
         public List<Category> Categories { get; set; } = new List<Category>();
